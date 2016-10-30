@@ -55,7 +55,7 @@ function view ([state, children]) {
   );
 }
 
-function svgPanAndZoom ({DOM, children$, attrs$}) {
+function SvgPanAndZoom ({DOM, children$, attrs$}) {
   const initialState = {
     pan: Vector.zero,
     zoom: 1,
@@ -133,4 +133,4 @@ function svgPanAndZoom ({DOM, children$, attrs$}) {
   };
 }
 
-export default isolate(svgPanAndZoom);
+export default isolate(SvgPanAndZoom);
