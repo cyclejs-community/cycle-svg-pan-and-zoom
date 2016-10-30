@@ -19,7 +19,7 @@ const cycleLogo = `
 `;
 
 function App ({DOM}) {
-  const children$ = xs.periodic(1000).map(i =>
+  const children$ = xs.periodic(3000).map(i =>
     [
       h('g', {props: {innerHTML: cycleLogo}}),
       h('text', {attrs: {x: 320, y: 320, fill: 'black'}}, 'hello world ' + i)

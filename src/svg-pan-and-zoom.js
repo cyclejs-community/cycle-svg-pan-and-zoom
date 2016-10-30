@@ -1,7 +1,8 @@
-import {h} from '@cycle/dom';
+import {h, thunk} from '@cycle/dom';
 import isolate from '@cycle/isolate';
 import xs from 'xstream';
 import Vector from './vector';
+import throttle from 'xstream/extra/throttle';
 
 function mousePositionFromEvent (event) {
   return Vector({
@@ -31,7 +32,7 @@ function translateZoom (zoom, pan, width, height) {
   };
 }
 
-function view ([state, children]) {
+function view ([state, childrenThunk]) {
   const {width, height} = state.attrs;
   const zoomedDimensions = translateZoom(state.zoom, state.pan, width, height);
 
@@ -50,9 +51,26 @@ function view ([state, children]) {
           ].join(' ')
         }
       },
-      children
+      [childrenThunk]
     )
   );
+}
+
+function thunkify (stream) {
+  let index = 0;
+
+  function thunkIt (children, index) {
+    index++;
+
+    const renderChildren = () => {
+      console.log('rendered!')
+      return h('svg', children)
+    };
+
+    return thunk('svg', renderChildren, [index]);
+  }
+
+  return stream.map(thunkIt).remember();
 }
 
 function SvgPanAndZoom ({DOM, children$, attrs$}) {
@@ -129,7 +147,7 @@ function SvgPanAndZoom ({DOM, children$, attrs$}) {
   const state$ = reducer$.fold((state, reducer) => reducer(state), initialState);
 
   return {
-    DOM: xs.combine(state$, children$).map(view)
+    DOM: xs.combine(state$, children$.compose(thunkify)).map(view)
   };
 }
 
