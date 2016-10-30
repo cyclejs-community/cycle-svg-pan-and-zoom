@@ -1,6 +1,6 @@
 import {h} from '@cycle/dom';
 import xs from 'xstream';
-import svgPanAndZoom from './svg-pan-and-zoom';
+import svgPanAndZoom from '../src/svg-pan-and-zoom';
 
 function App ({DOM}) {
   const children$ = xs.periodic(1000).map(i =>
