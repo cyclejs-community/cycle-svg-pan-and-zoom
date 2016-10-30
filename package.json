@@ -1,0 +1,19 @@
+{
+  "name": "cycle-svg-pan-and-zoom",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "cycle-scripts-widdershin": "0.3.1"
+  },
+  "dependencies": {
+    "@cycle/dom": "^13.0.0",
+    "@cycle/xstream-run": "^3.1.0",
+    "xstream": "^7.0.0"
+  },
+  "scripts": {
+    "start": "cycle-scripts start",
+    "test": "cycle-scripts test",
+    "build": "cycle-scripts build",
+    "take-off-training-wheels": "cycle-scripts take-off-training-wheels"
+  }
+}
