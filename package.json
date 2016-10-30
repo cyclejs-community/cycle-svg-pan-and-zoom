@@ -1,6 +1,6 @@
 {
   "name": "cycle-svg-pan-and-zoom",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "lib/svg-pan-and-zoom.js",
   "files": [
     "lib"
