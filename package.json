@@ -5,6 +5,16 @@
   "files": [
     "lib"
   ],
+  "author": "Nick Johnstone",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyclejs-community/cycle-svg-pan-and-zoom.git"
+  },
+  "bugs": {
+      "url": "https://github.com/cyclejs-community/cycle-svg-pan-and-zoom/issues"
+    },
+  "homepage": "https://github.com/cyclejs-community/cycle-svg-pan-and-zoom#readme",
   "devDependencies": {
     "@cycle/xstream-run": "^3.1.0",
     "babel-cli": "^6.18.0",
