@@ -9,7 +9,7 @@ var mocha = path.resolve(process.cwd(), 'node_modules', '.bin', 'mocha')
 var args = [
   '--colors',
   '--compilers js:babel-core/register',
-  !process.env.CI && (console.log(chalk.green.bold('Enabling watch mode')) || '--watch'),
+  //!process.env.CI && (console.log(chalk.green.bold('Enabling watch mode')) || '--watch'),
   'test/**/*test.js'
 ].filter(Boolean)
 
