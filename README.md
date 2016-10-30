@@ -32,10 +32,6 @@ function main ({DOM}) {
 
 ## API
 
-```js
-import SvgPanAndZoom from 'cycle-svg-pan-and-zoom';
-```
-
 ### SvgPanAndZoom({DOM, children$, attrs$})
 
 Returns a sinks object with a DOM stream, where the top level element is the `svg`.
