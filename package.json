@@ -1,6 +1,6 @@
 {
   "name": "cycle-svg-pan-and-zoom",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "lib/svg-pan-and-zoom.js",
   "files": [
     "lib"
@@ -12,8 +12,8 @@
     "url": "git+https://github.com/cyclejs-community/cycle-svg-pan-and-zoom.git"
   },
   "bugs": {
-      "url": "https://github.com/cyclejs-community/cycle-svg-pan-and-zoom/issues"
-    },
+    "url": "https://github.com/cyclejs-community/cycle-svg-pan-and-zoom/issues"
+  },
   "homepage": "https://github.com/cyclejs-community/cycle-svg-pan-and-zoom#readme",
   "devDependencies": {
     "@cycle/xstream-run": "^3.1.0",
