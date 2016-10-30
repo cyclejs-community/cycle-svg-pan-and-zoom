@@ -1,4 +1,5 @@
 import {h} from '@cycle/dom';
+import isolate from '@cycle/isolate';
 import xs from 'xstream';
 import Vector from './vector';
 
@@ -30,31 +31,42 @@ function translateZoom (zoom, pan, width, height) {
   };
 }
 
-function svgPanAndZoom ({DOM, children$}) {
-  function view ([state, children]) {
-    const width = innerWidth * 0.99;
-    const height = innerHeight * 0.99;
-    const zoomedDimensions = translateZoom(state.zoom, state.pan, width, height);
+function view ([state, children]) {
+  const {width, height} = state.attrs;
+  const zoomedDimensions = translateZoom(state.zoom, state.pan, width, height);
 
-    return (
-      h(
-        'svg',
-        {
-          attrs: {
-            width,
-            height,
-            viewBox: `${zoomedDimensions.x} ${zoomedDimensions.y} ${zoomedDimensions.width} ${zoomedDimensions.height}`
-          }
-        },
-        children
-      )
-    );
-  }
+  return (
+    h(
+      'svg',
+      {
+        attrs: {
+          ...state.attrs,
 
+          viewBox: [
+            zoomedDimensions.x,
+            zoomedDimensions.y,
+            zoomedDimensions.width,
+            zoomedDimensions.height
+          ].join(' ')
+        }
+      },
+      children
+    )
+  );
+}
+
+function svgPanAndZoom ({DOM, children$, attrs$}) {
   const initialState = {
     pan: Vector.zero,
-    zoom: 1
+    zoom: 1,
+
+    attrs: {
+      width: 640,
+      height: 480
+    }
   };
+
+  attrs$ = attrs$ || xs.empty();
 
   const mouseWheel$ = DOM
     .select('document')
@@ -105,10 +117,13 @@ function svgPanAndZoom ({DOM, children$}) {
     .map(panning => mousePositionChange$.filter(() => panning))
     .flatten();
 
+  const applyAttrs$ = attrs$.map(attrs => (state) => ({...state, attrs}));
+
   const reducer$ = xs.merge(
     zoomOut$,
     zoomIn$,
-    pan$.map(panReducer)
+    pan$.map(panReducer),
+    applyAttrs$
   );
 
   const state$ = reducer$.fold((state, reducer) => reducer(state), initialState);
@@ -118,4 +133,4 @@ function svgPanAndZoom ({DOM, children$}) {
   };
 }
 
-export default svgPanAndZoom;
+export default isolate(svgPanAndZoom);
