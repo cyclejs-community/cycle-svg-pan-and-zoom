@@ -14,12 +14,18 @@ First we need to import the component:
 import SvgPanAndZoom from 'cycle-svg-pan-and-zoom';
 ```
 
+We also need the `h` hyperscript helper from `@cycle/dom` to make SVG elements.
+
+```js
+import {h} from '@cycle/dom';
+```
+
 Then, inside of our main, we set up our SVG:
 
 ```js
 function main ({DOM}) {
   const children$ = xs.of([
-    h('text', 'hello world')
+    h('text', {attrs: {x: 100, y: 100}}, 'hello world')
   ]);
 
   const svg = SvgPanAndZoom({DOM, children$});
