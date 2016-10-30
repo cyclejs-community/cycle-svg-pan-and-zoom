@@ -13,7 +13,7 @@ babelConfig = Object.assign({}, babelConfig, {sourceMaps: true});
 
 require('dotenv').config({silent: true})
 
-var buildPath = path.join(process.cwd(), 'build')
+var buildPath = path.join(process.cwd())
 var publicPath = path.join(process.cwd(), 'public')
 var srcPath = path.join(process.cwd(), 'example')
 
