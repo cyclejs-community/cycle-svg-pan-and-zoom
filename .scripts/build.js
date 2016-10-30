@@ -15,7 +15,7 @@ require('dotenv').config({silent: true})
 
 var buildPath = path.join(process.cwd(), 'build')
 var publicPath = path.join(process.cwd(), 'public')
-var srcPath = path.join(process.cwd(), 'src')
+var srcPath = path.join(process.cwd(), 'example')
 
 mkdirp.sync(buildPath)
 
