@@ -69,8 +69,9 @@ function SvgPanAndZoom ({DOM, children$, attrs$}) {
   attrs$ = attrs$ || xs.empty();
 
   const mouseWheel$ = DOM
-    .select('body')
-    .events('wheel');
+    .select('svg')
+    .events('wheel')
+    .debug(ev => ev.preventDefault());
 
   const zoomOut$ = mouseWheel$
     .filter(ev => ev.deltaY > 0)
